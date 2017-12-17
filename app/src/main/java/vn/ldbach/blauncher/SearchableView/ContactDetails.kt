@@ -15,6 +15,8 @@ import vn.ldbach.blauncher.R
 class ContactDetails(displayName: String, private val phoneNumber: String, thumbnail: Drawable) :
         Searchable(phoneNumber, displayName, thumbnail) {
 
+    private var layoutView: View? = null
+
     override fun getIntent(): Intent {
         val intent = Intent(Intent.ACTION_DIAL)
         intent.data = Uri.parse("tel: $phoneNumber")
@@ -22,18 +24,18 @@ class ContactDetails(displayName: String, private val phoneNumber: String, thumb
     }
 
     override fun getView(convertView: View?, frag: Fragment): View? {
-        //if (v == null) {
-        val layoutInflater = frag.layoutInflater
-        val v = layoutInflater.inflate(R.layout.list_contacts, null)
-        //}
+        if (layoutView == null) {
+            val layoutInflater = frag.layoutInflater
+            layoutView = layoutInflater.inflate(R.layout.list_contacts, null)
 
-        val contactName: TextView = v!!.findViewById(R.id.contact_name)
-        contactName.text = searchString
-        val contactIcon: ImageView = v.findViewById(R.id.contact_icon)
-        contactIcon.setImageDrawable(representIcon)
-        val contactNumber: TextView = v.findViewById(R.id.contact_number)
-        contactNumber.text = phoneNumber
+            val contactName: TextView = layoutView!!.findViewById(R.id.contact_name)
+            contactName.text = searchString
+            val contactIcon: ImageView = layoutView!!.findViewById(R.id.contact_icon)
+            contactIcon.setImageDrawable(representIcon)
+            val contactNumber: TextView = layoutView!!.findViewById(R.id.contact_number)
+            contactNumber.text = phoneNumber
+        }
 
-        return v
+        return layoutView
     }
 }

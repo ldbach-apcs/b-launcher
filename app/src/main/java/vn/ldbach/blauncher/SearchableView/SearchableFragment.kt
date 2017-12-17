@@ -56,6 +56,7 @@ class SearchableFragment : ViewFragment() {
                 //            .forEach { s.replace(it - 1, it, "") }
                 //}
                 //searchQuery.text = s
+                searchQuery.performClick()
                 filterApps(s.toString())
             }
 
@@ -67,8 +68,10 @@ class SearchableFragment : ViewFragment() {
             }
         })
         searchQuery.setOnClickListener {
-            _ -> listView.setSelection(0)
-        }
+            _ -> listView.apply {
+            smoothScrollBy(0, 0)
+            setSelection(0)
+        }}
 
 
         // focusKeyboard.setOnClickListener({_ -> performFabAction()})
