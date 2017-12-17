@@ -1,4 +1,4 @@
-#Sun Dec 17 14:14:14 ICT 2017
+#Sun Dec 17 15:18:28 ICT 2017
 base.0=/home/ldbach/AndroidStudioProjects/BLauncher/app/build/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex

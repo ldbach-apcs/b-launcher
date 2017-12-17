@@ -34,6 +34,7 @@ class SearchableArrayAdapter (
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
+        /*
         var v = convertView
         if (v == null) {
             val layoutInflater = frag.layoutInflater
@@ -47,6 +48,8 @@ class SearchableArrayAdapter (
         appIcon.setImageDrawable(filteredAppList[position].representIcon)
 
         return v
+        */
+        return filteredAppList[position].getView(convertView, frag)
     }
 
     override fun getFilter(): Filter {
