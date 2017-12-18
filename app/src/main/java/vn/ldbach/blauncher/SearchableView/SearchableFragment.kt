@@ -145,27 +145,8 @@ class SearchableFragment : ViewFragment() {
     override fun performFabAction() {
         val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as
                 InputMethodManager
-
-        //if (searchQuery.hasFocus()) {
-        //    imm.hideSoftInputFromWindow(activity.currentFocus.windowToken, 0)
-        //    searchQuery.clearFocus()
-        //    focusKeyboard.requestFocus()
-        //    Toast.makeText(context, "Hide now!", Toast.LENGTH_SHORT).show()
-        //  //  keyboardIsShowing = false
-        //} else {
         imm.showSoftInput(searchQuery, InputMethodManager.SHOW_IMPLICIT)
-        //   Toast.makeText(context, "Show now!", Toast.LENGTH_SHORT).show()
-            // keyboardIsShowing = false
-        //}
-
-        //searchQuery.apply {
-        //    performClick()
-        //    // performFabAction()
-        //    clearFocus()
-        //   if (requestFocus()) {
-        //        imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
-        //    }
-        //}
+        resetListPosition()
     }
 
     override fun onResume() {

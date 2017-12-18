@@ -49,7 +49,7 @@ class SearchableArrayAdapter (
 
         return v
         */
-        val v =  filteredAppList[position].getView(convertView, frag)
+        val v =  filteredAppList[position].getView(convertView, frag, parent)
         filteredAppList[position].apply {
             setOnClick(frag.context)
             setOnLongClick(frag.context)

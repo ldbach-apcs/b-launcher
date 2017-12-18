@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.support.v4.app.Fragment
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import vn.ldbach.blauncher.R
@@ -23,10 +24,10 @@ class ContactDetails(displayName: String, private val phoneNumber: String, thumb
         return intent
     }
 
-    override fun getView(convertView: View?, frag: Fragment): View? {
+    override fun getView(convertView: View?, frag: Fragment, parent: ViewGroup?): View? {
         if (layoutView == null) {
             val layoutInflater = frag.layoutInflater
-            layoutView = layoutInflater.inflate(R.layout.list_contacts, null)
+            layoutView = layoutInflater.inflate(R.layout.list_contacts, parent, false)
 
             val contactName: TextView = layoutView!!.findViewById(R.id.contact_name)
             contactName.text = searchString

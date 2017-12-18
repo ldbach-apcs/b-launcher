@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.support.v4.app.Fragment
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import vn.ldbach.blauncher.R
@@ -22,10 +23,10 @@ data class AppDetails(
         return manager.getLaunchIntentForPackage(name.toString())
     }
 
-    override fun getView(convertView: View?, frag: Fragment) : View? {
+    override fun getView(convertView: View?, frag: Fragment, parent: ViewGroup?) : View? {
         if (layoutView == null) {
             val layoutInflater = frag.layoutInflater
-            layoutView = layoutInflater.inflate(R.layout.list_apps, null)
+            layoutView = layoutInflater.inflate(R.layout.list_apps, parent, false)
             val appLabel: TextView = layoutView!!.findViewById(R.id.app_name)
             appLabel.text = searchString
             val appIcon: ImageView = layoutView!!.findViewById(R.id.app_icon)

@@ -4,21 +4,25 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8F000000"
-    android:layout_margin="4dp">
+    android:background="#80000000">
 
     <EditText
+        android:background="@color/colorPrimary"
         android:focusable="true"
+        android:layout_gravity="center_vertical"
         android:focusableInTouchMode="true"
+        android:inputType="text"
         android:imeOptions="actionDone"
-        android:layout_margin="8dp"
         android:id="@+id/search_query"
-        android:padding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:textColorHint="#D0D0D0"
         android:hint="Search apps"
         android:textColor="@android:color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="56dp" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -27,7 +31,7 @@
         <ListView
             android:id="@+id/lists_apps"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content" >
         </ListView>
 
         <android.support.design.widget.FloatingActionButton

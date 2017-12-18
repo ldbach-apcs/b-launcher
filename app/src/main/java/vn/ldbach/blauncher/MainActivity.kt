@@ -49,7 +49,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onPageSelected(position: Int) = when (pagerAdapter.getItem(position)) {
-                is SearchableFragment -> fab.show()
+                is SearchableFragment -> run {
+                    fab.setImageDrawable(getDrawable(R.drawable.ic_keyboard))
+                    fab.show()
+                }
                     else -> fab.hide()
                 }
             })
