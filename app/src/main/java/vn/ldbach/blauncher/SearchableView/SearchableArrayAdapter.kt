@@ -49,7 +49,12 @@ class SearchableArrayAdapter (
 
         return v
         */
-        return filteredAppList[position].getView(convertView, frag)
+        val v =  filteredAppList[position].getView(convertView, frag)
+        filteredAppList[position].apply {
+            setOnClick(frag.context)
+            setOnLongClick(frag.context)
+        }
+        return v
     }
 
     override fun getFilter(): Filter {

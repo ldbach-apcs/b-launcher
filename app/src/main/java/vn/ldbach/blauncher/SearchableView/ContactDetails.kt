@@ -1,5 +1,6 @@
 package vn.ldbach.blauncher.SearchableView
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
@@ -13,9 +14,8 @@ import vn.ldbach.blauncher.R
  * Created by ldbach on 12/7/17.
  */
 class ContactDetails(displayName: String, private val phoneNumber: String, thumbnail: Drawable) :
-        Searchable(phoneNumber, displayName, thumbnail) {
+        Searchable(displayName, thumbnail) {
 
-    private var layoutView: View? = null
 
     override fun getIntent(): Intent {
         val intent = Intent(Intent.ACTION_DIAL)
@@ -37,5 +37,9 @@ class ContactDetails(displayName: String, private val phoneNumber: String, thumb
         }
 
         return layoutView
+    }
+
+    override fun setOnLongClick(context: Context) {
+
     }
 }

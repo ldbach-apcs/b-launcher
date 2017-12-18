@@ -28,6 +28,8 @@ class SearchableFragment : ViewFragment() {
     private lateinit var searchableLists : ArrayList<List<Searchable>>
     private lateinit var dataManager: DataManager
 
+   // private var keyboardIsShowing = true
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.viewfragment_searchable, container, false)
     }
@@ -46,7 +48,7 @@ class SearchableFragment : ViewFragment() {
     }
 
     private fun initInteraction() {
-        addItemClickListener()
+        // addItemClickListener()
 
         searchQuery.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -56,7 +58,7 @@ class SearchableFragment : ViewFragment() {
                 //            .forEach { s.replace(it - 1, it, "") }
                 //}
                 //searchQuery.text = s
-                searchQuery.performClick()
+                resetListPosition()
                 filterApps(s.toString())
             }
 
@@ -68,13 +70,18 @@ class SearchableFragment : ViewFragment() {
             }
         })
         searchQuery.setOnClickListener {
-            _ -> listView.apply {
-            smoothScrollBy(0, 0)
-            setSelection(0)
-        }}
+            _ -> resetListPosition()
+        }
 
 
         // focusKeyboard.setOnClickListener({_ -> performFabAction()})
+    }
+
+    private fun resetListPosition() {
+        listView.apply {
+            smoothScrollBy(0, 0)
+            setSelection(0)
+        }
     }
 
     private fun initData() {
@@ -136,20 +143,34 @@ class SearchableFragment : ViewFragment() {
     }
 
     override fun performFabAction() {
-        searchQuery.apply {
-            performClick()
-            // performFabAction()
-            clearFocus()
-            if (requestFocus()) {
-                val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as
-                        InputMethodManager
-                imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
-            }
-        }
+        val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as
+                InputMethodManager
+
+        //if (searchQuery.hasFocus()) {
+        //    imm.hideSoftInputFromWindow(activity.currentFocus.windowToken, 0)
+        //    searchQuery.clearFocus()
+        //    focusKeyboard.requestFocus()
+        //    Toast.makeText(context, "Hide now!", Toast.LENGTH_SHORT).show()
+        //  //  keyboardIsShowing = false
+        //} else {
+        imm.showSoftInput(searchQuery, InputMethodManager.SHOW_IMPLICIT)
+        //   Toast.makeText(context, "Show now!", Toast.LENGTH_SHORT).show()
+            // keyboardIsShowing = false
+        //}
+
+        //searchQuery.apply {
+        //    performClick()
+        //    // performFabAction()
+        //    clearFocus()
+        //   if (requestFocus()) {
+        //        imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
+        //    }
+        //}
     }
 
     override fun onResume() {
         super.onResume()
+        resetListPosition()
         searchQuery.text.clear()
         initData()
     }

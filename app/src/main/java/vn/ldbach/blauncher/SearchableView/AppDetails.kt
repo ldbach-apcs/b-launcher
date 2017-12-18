@@ -3,6 +3,7 @@ package vn.ldbach.blauncher.SearchableView
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.support.v4.app.Fragment
 import android.view.View
 import android.widget.ImageView
@@ -14,9 +15,7 @@ import vn.ldbach.blauncher.R
  */
 data class AppDetails(
         val context: Context, val label: CharSequence, val name: CharSequence, val icon: Drawable)
-    : Searchable(name, label, icon) {
-
-    private var layoutView: View? = null
+    : Searchable(label, icon) {
 
     override fun getIntent(): Intent {
         val manager = this.context.packageManager
@@ -35,4 +34,14 @@ data class AppDetails(
         return layoutView
     }
 
+    override fun setOnLongClick(context: Context) {
+        layoutView?.setOnLongClickListener({
+            _ -> run {
+            val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+            intent.data = Uri.parse("package:$name" )
+            context.startActivity(intent)
+            return@setOnLongClickListener true
+        }})
+
+    }
 }
