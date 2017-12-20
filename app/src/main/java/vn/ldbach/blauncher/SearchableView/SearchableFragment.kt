@@ -3,7 +3,6 @@ package vn.ldbach.blauncher.SearchableView
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -46,6 +45,13 @@ class SearchableFragment : ViewFragment() {
         initInteraction()
 
         // focusKeyboard.requestFocus()
+        val permManager = PermissionManager(context, this)
+
+        // If shared preference is empty, request permision
+        val pref = activity.application.getSharedPreferences(PermissionManager.PERM_FILE, Context
+                .MODE_PRIVATE)
+        if (!pref.contains(PermissionManager.CALL_PERM.toString()))
+            permManager.requestCallPermission()
     }
 
     private fun initInteraction() {
@@ -138,6 +144,17 @@ class SearchableFragment : ViewFragment() {
             } else {
                 // Notify the needs of contact permission.
             }
+        }
+
+        if (requestCode == PermissionManager.CALL_PERM) {
+            // Put SharedPreference
+            val settings = activity.applicationContext.getSharedPreferences(PermissionManager
+                    .PERM_FILE, Context
+                    .MODE_PRIVATE)
+            val editor = settings.edit()
+            editor.putBoolean(PermissionManager.CALL_PERM.toString(),
+                    (grantResults[0] == PackageManager.PERMISSION_GRANTED))
+            editor.commit()
         }
     }
 

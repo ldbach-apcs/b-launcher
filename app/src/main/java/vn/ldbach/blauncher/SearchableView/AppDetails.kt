@@ -35,7 +35,7 @@ data class AppDetails(
         return layoutView
     }
 
-    override fun setOnLongClick(context: Context) {
+    override fun setOnLongClick(frag: Fragment) {
         layoutView?.setOnLongClickListener({
             _ -> run {
             val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
