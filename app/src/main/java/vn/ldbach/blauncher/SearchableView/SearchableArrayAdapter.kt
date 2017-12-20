@@ -3,7 +3,6 @@ package vn.ldbach.blauncher.SearchableView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import vn.ldbach.blauncher.R
 
 /**
  * Adapter for SearchView in the Launcher
@@ -63,19 +62,6 @@ class SearchableArrayAdapter (
 
     inner class AppFilter : Filter() {
 
-        private fun CharSequence.t9Contains(filterString: String): Boolean {
-            // var i = 0 // this traverse the name
-            var j = 0 // this traverse the filterString
-
-            for (curChar in this) {
-                if (j < filterString.length &&
-                        curChar.toLowerCase() == filterString[j].toLowerCase())
-                    j++
-            }
-
-            return j == filterString.length
-        }
-
         override fun performFiltering(constraint: CharSequence?): FilterResults {
             val filterString = constraint.toString()
 
@@ -91,7 +77,7 @@ class SearchableArrayAdapter (
             if (!filterString.isEmpty()) {
                 for (searchable in searchableLists) {
                     searchable.filter {
-                        it.searchString.t9Contains(filterString)
+                        it.isSearchableBy(filterString)
                     }.forEach {
                         nlist.add(it)
                     }
@@ -114,8 +100,8 @@ class SearchableArrayAdapter (
             filteredAppList =
                     (results!!.values as List<Searchable>?)?.sortedWith(
                             Comparator { search1, search2 ->
-                        search1.searchString.toString().compareTo(
-                                search2.searchString.toString(), ignoreCase = true)})
+                        search2.searchString.toString().compareTo(
+                                search1.searchString.toString(), ignoreCase = true)})
                     ?: ArrayList()
             notifyDataSetChanged()
         }

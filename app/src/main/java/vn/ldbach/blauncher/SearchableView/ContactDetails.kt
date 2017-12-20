@@ -10,13 +10,18 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import vn.ldbach.blauncher.R
+import vn.ldbach.blauncher.t9Contains
 
 /**
- * Created by ldbach on 12/7/17.
+ * This class is for helping to maintain Contact Detail
  */
-class ContactDetails(displayName: String, private val phoneNumber: String, thumbnail: Drawable) :
+class ContactDetails(private val displayName: String, private val phoneNumber: String, thumbnail:
+Drawable) :
         Searchable(displayName, thumbnail) {
 
+    override fun isSearchableBy(query : String): Boolean {
+        return displayName.t9Contains(query) or phoneNumber.t9Contains(query)
+    }
 
     override fun getIntent(): Intent {
         val intent = Intent(Intent.ACTION_DIAL)

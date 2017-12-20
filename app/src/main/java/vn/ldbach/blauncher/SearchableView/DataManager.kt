@@ -34,7 +34,7 @@ class DataManager(private val context: Context) {
         }
 
         return apps.sortedWith(Comparator { app1, app2 ->
-            app1.label.toString().compareTo(app2.label.toString(), ignoreCase = true)
+            app2.label.toString().compareTo(app1.label.toString(), ignoreCase = true)
         })
     }
 

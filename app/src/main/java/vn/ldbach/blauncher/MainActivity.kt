@@ -9,6 +9,19 @@ import android.support.v4.view.ViewPager
 import android.view.View
 import vn.ldbach.blauncher.SearchableView.SearchableFragment
 
+fun CharSequence.t9Contains(filterString: String): Boolean {
+    // var i = 0 // this traverse the name
+    var j = 0 // this traverse the filterString
+
+    for (curChar in this) {
+        if (j < filterString.length &&
+                curChar.toLowerCase() == filterString[j].toLowerCase())
+            j++
+    }
+
+    return j == filterString.length
+}
+
 class MainActivity : AppCompatActivity() {
 
     private val pager by bind<ViewPager>(R.id.main_pager)
@@ -50,8 +63,8 @@ class MainActivity : AppCompatActivity() {
 
             override fun onPageSelected(position: Int) = when (pagerAdapter.getItem(position)) {
                 is SearchableFragment -> run {
-                    fab.setImageDrawable(getDrawable(R.drawable.ic_keyboard))
-                    fab.show()
+                    //fab.setImageDrawable(getDrawable(R.drawable.ic_keyboard))
+                    //fab.show()
                 }
                     else -> fab.hide()
                 }

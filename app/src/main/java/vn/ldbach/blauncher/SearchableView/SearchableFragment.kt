@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import android.widget.AbsListView.OnScrollListener.SCROLL_STATE_IDLE
 import vn.ldbach.blauncher.ViewFragment
 import vn.ldbach.blauncher.R
 import vn.ldbach.blauncher.Utils.PermissionManager
@@ -21,7 +22,7 @@ import vn.ldbach.blauncher.Utils.PermissionManager
  */
 class SearchableFragment : ViewFragment() {
 
-    private lateinit var focusKeyboard: FloatingActionButton
+    // private lateinit var focusKeyboard: FloatingActionButton
     private lateinit var searchQuery: EditText
     private lateinit var listView: ListView
     private var adapter: SearchableArrayAdapter? = null
@@ -37,18 +38,33 @@ class SearchableFragment : ViewFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         searchQuery = view?.findViewById(R.id.search_query)!!
         listView = view.findViewById(R.id.lists_apps)!!
-        focusKeyboard = view.findViewById(R.id.focus_keyboard)!!
+        // focusKeyboard = view.findViewById(R.id.focus_keyboard)!!
 
         dataManager = DataManager(this.context)
 
         // initData()
         initInteraction()
 
-        focusKeyboard.requestFocus()
+        // focusKeyboard.requestFocus()
     }
 
     private fun initInteraction() {
         // addItemClickListener()
+
+        listView.setOnScrollListener(object : AbsListView.OnScrollListener{
+            override fun onScrollStateChanged(view: AbsListView?, scrollState: Int) {
+                if (scrollState == SCROLL_STATE_IDLE) return
+                val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as
+                        InputMethodManager
+                imm.hideSoftInputFromWindow(searchQuery.windowToken, 0)
+            }
+
+            override fun onScroll(view: AbsListView?, firstVisibleItem: Int, visibleItemCount: Int, totalItemCount: Int) {
+
+            }
+
+        })
+
 
         searchQuery.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -80,7 +96,8 @@ class SearchableFragment : ViewFragment() {
     private fun resetListPosition() {
         listView.apply {
             smoothScrollBy(0, 0)
-            setSelection(0)
+            if (adapter != null)
+                setSelection(adapter.count - 1)
         }
     }
 
@@ -109,24 +126,6 @@ class SearchableFragment : ViewFragment() {
         }
     }
 
-    private fun addItemClickListener() {
-        listView.onItemClickListener = AdapterView.OnItemClickListener {
-            _, _, position, _ -> run {
-
-                // Clear the search box in addition to launching app
-                // searchQuery.text.clear()
-
-               // val manager = this.context.packageManager
-               // val intent = manager.getLaunchIntentForPackage(
-               //         adapter.getItem(position).intentString.toString())
-
-                val intent = adapter?.getItem(position)?.getIntent()
-                if (intent != null)
-                    this.startActivity(intent)
-            }
-        }
-    }
-
     private fun filterApps(query: String) {
         // val myAdapter = listView.adapter as SearchableArrayAdapter
         adapter?.filter?.filter(query)
@@ -152,6 +151,7 @@ class SearchableFragment : ViewFragment() {
     override fun onResume() {
         super.onResume()
         resetListPosition()
+        searchQuery.requestFocus()
         searchQuery.text.clear()
         initData()
     }

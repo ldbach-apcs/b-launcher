@@ -48,6 +48,10 @@
         "source": "/home/ldbach/AndroidStudioProjects/BLauncher/app/src/main/res/drawable/ic_contact_default.png"
     },
     {
+        "merged": "/home/ldbach/AndroidStudioProjects/BLauncher/app/build/intermediates/res/merged/debug/drawable_search_background.xml.flat",
+        "source": "/home/ldbach/AndroidStudioProjects/BLauncher/app/src/main/res/drawable/search_background.xml"
+    },
+    {
         "merged": "/home/ldbach/AndroidStudioProjects/BLauncher/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_scrubber_control_off_mtrl_alpha.png.flat",
         "source": "/home/ldbach/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/2ad607dbeab3eee7aa79caafefebe9ea/res/drawable-xxhdpi-v4/abc_scrubber_control_off_mtrl_alpha.png"
     },
@@ -870,6 +874,10 @@
     {
         "merged": "/home/ldbach/AndroidStudioProjects/BLauncher/app/build/intermediates/res/merged/debug/layout_abc_screen_content_include.xml.flat",
         "source": "/home/ldbach/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/2ad607dbeab3eee7aa79caafefebe9ea/res/layout/abc_screen_content_include.xml"
+    },
+    {
+        "merged": "/home/ldbach/AndroidStudioProjects/BLauncher/app/build/intermediates/res/merged/debug/drawable_search_cursor.xml.flat",
+        "source": "/home/ldbach/AndroidStudioProjects/BLauncher/app/src/main/res/drawable/search_cursor.xml"
     },
     {
         "merged": "/home/ldbach/AndroidStudioProjects/BLauncher/app/build/intermediates/res/merged/debug/drawable_abc_switch_thumb_material.xml.flat",
