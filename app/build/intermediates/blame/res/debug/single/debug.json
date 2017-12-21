@@ -756,6 +756,10 @@
         "source": "/home/ldbach/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/9ba85eacfb48ba34d87ad2700455fc47/res/layout-v21/notification_template_custom_big.xml"
     },
     {
+        "merged": "/home/ldbach/AndroidStudioProjects/BLauncher/app/build/intermediates/res/merged/debug/drawable_ic_clear.png.flat",
+        "source": "/home/ldbach/AndroidStudioProjects/BLauncher/app/src/main/res/drawable/ic_clear.png"
+    },
+    {
         "merged": "/home/ldbach/AndroidStudioProjects/BLauncher/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
         "source": "/home/ldbach/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/fa103c72eeccc8e4a1b2aa0fe023ecde/res/drawable-mdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png"
     },

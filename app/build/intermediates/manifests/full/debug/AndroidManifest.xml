@@ -20,6 +20,22 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
+
+        <!--
+        <receiver
+            android:name="vn.ldbach.blauncher.SearchableView.DataManager"
+            android:enabled="true"
+            android:priority="0" >
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" >
+                </action>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" >
+                </action>
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        -->
+
         <activity
             android:name="vn.ldbach.blauncher.MainActivity"
             android:launchMode="singleTask"

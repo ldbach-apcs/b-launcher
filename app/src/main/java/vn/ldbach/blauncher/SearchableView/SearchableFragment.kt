@@ -27,6 +27,7 @@ class SearchableFragment : ViewFragment() {
     private var adapter: SearchableArrayAdapter? = null
     private lateinit var searchableLists : ArrayList<List<Searchable>>
     private lateinit var dataManager: DataManager
+    private lateinit var clearText: ImageButton
 
    // private var keyboardIsShowing = true
 
@@ -37,6 +38,7 @@ class SearchableFragment : ViewFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         searchQuery = view?.findViewById(R.id.search_query)!!
         listView = view.findViewById(R.id.lists_apps)!!
+        clearText = view.findViewById(R.id.clear_text)!!
         // focusKeyboard = view.findViewById(R.id.focus_keyboard)!!
 
         dataManager = DataManager(this.context)
@@ -82,6 +84,7 @@ class SearchableFragment : ViewFragment() {
                 //searchQuery.text = s
                 resetListPosition()
                 filterApps(s.toString())
+                clearText.visibility = if (s.isNullOrBlank()) View.INVISIBLE else View.VISIBLE
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -96,6 +99,7 @@ class SearchableFragment : ViewFragment() {
         }
 
 
+        clearText.setOnClickListener { _-> searchQuery.text.clear() }
         // focusKeyboard.setOnClickListener({_ -> performFabAction()})
     }
 
@@ -171,5 +175,15 @@ class SearchableFragment : ViewFragment() {
         searchQuery.requestFocus()
         searchQuery.text.clear()
         initData()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        dataManager.registerReceiver()
+    }
+
+    override fun onStop() {
+        dataManager.unregisterReceiver()
+        super.onStop()
     }
 }

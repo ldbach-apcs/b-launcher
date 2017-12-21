@@ -36,12 +36,12 @@ Drawable) :
             when (v?.id) {
                 R.id.contact_dial -> run {
                     val intent = Intent(Intent.ACTION_DIAL)
-                    intent.data = Uri.parse("tel :$phoneNumber")
+                    intent.data = Uri.parse("tel:$phoneNumber")
                     context.startActivity(intent)
                 }
                 R.id.contact_msg -> run {
                     val intent = Intent(Intent.ACTION_VIEW)
-                    intent.data = Uri.parse("sms: $phoneNumber")
+                    intent.data = Uri.parse("sms:$phoneNumber")
                     context.startActivity(intent)
                 }
                 R.id.contact_info -> throw NotImplementedError()
@@ -64,7 +64,7 @@ Drawable) :
                 else Intent(Intent.ACTION_DIAL)
 
         //val intent = Intent(Intent.ACTION_CALL)
-        intent.data = Uri.parse("tel: $phoneNumber")
+        intent.data = Uri.parse("tel:$phoneNumber")
         return intent
     }
 
