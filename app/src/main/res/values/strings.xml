@@ -4,4 +4,7 @@
     <string name="dialog_dial">Dial</string>
     <string name="dialog_message">Message</string>
     <string name="dialog_info">Information</string>
+
+    <string name="app_info">App info</string>
+    <string name="app_delete">Uninstall</string>
 </resources>

@@ -4,6 +4,9 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <!--<item name="android:windowActionBar">false</item> -->
+
+        <!-- Ripple effect can be made in this background file-->
+        <item name="android:itemBackground">@color/colorBackgroundDialog</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowShowWallpaper">true</item>
         <item name="android:colorBackground">@android:color/transparent</item>

@@ -8,5 +8,5 @@
 
     <color name="colorTextSearchPrimary">#FBFBFB</color>
     <color name="colorTextSearchSecondary">#FAF5F5F5</color>
-    <color name="colorBackgroundDialog">#505050</color>
+    <color name="colorBackgroundDialog">#F5F5F5</color>
 </resources>

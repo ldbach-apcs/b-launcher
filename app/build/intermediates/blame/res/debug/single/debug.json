@@ -560,6 +560,10 @@
         "source": "/home/ldbach/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/807c2f4f550b2e79ae18e89e3f2647aa/res/drawable-v21/design_bottom_navigation_item_background.xml"
     },
     {
+        "merged": "/home/ldbach/AndroidStudioProjects/BLauncher/app/build/intermediates/res/merged/debug/menu_menu_app_long_click.xml.flat",
+        "source": "/home/ldbach/AndroidStudioProjects/BLauncher/app/src/main/res/menu/menu_app_long_click.xml"
+    },
+    {
         "merged": "/home/ldbach/AndroidStudioProjects/BLauncher/app/build/intermediates/res/merged/debug/layout_notification_template_big_media_narrow.xml.flat",
         "source": "/home/ldbach/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/67fd52ad35714d96a02bb8f66453dc82/res/layout/notification_template_big_media_narrow.xml"
     },
