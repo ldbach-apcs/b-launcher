@@ -7,7 +7,9 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.provider.Settings
 import android.support.v4.app.Fragment
+import android.support.v7.widget.PopupMenu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -19,37 +21,15 @@ import vn.ldbach.blauncher.t9Contains
 /**
  * This class is for helping to maintain Contact Detail
  */
-class ContactDetails(private val displayName: String, private val phoneNumber: String, thumbnail:
+class ContactDetails(
+        private val id: Long, private val displayName: String, private val phoneNumber: String,
+        thumbnail:
 Drawable) :
         Searchable(displayName, thumbnail) {
 
     companion object {
         @JvmStatic
         var canCall = false
-    }
-
-    private lateinit var dialog: AlertDialog
-
-    inner class DialogClickListener(private val context: Context)
-                                            : View.OnClickListener {
-        override fun onClick(v: View?) {
-            when (v?.id) {
-                R.id.contact_dial -> run {
-                    val intent = Intent(Intent.ACTION_DIAL)
-                    intent.data = Uri.parse("tel:$phoneNumber")
-                    context.startActivity(intent)
-                }
-                R.id.contact_msg -> run {
-                    val intent = Intent(Intent.ACTION_VIEW)
-                    intent.data = Uri.parse("sms:$phoneNumber")
-                    context.startActivity(intent)
-                }
-                R.id.contact_info -> throw NotImplementedError()
-                else -> throw UnsupportedOperationException()
-            }
-
-            dialog.dismiss()
-        }
     }
 
     override fun isSearchableBy(query : String): Boolean {
@@ -84,40 +64,33 @@ Drawable) :
         return layoutView
     }
 
-    @SuppressLint("InflateParams")
+
     override fun setOnLongClick(frag: Fragment) {
+        super.setOnLongClick(frag, R.menu.menu_contact_long_click)
+    }
 
-        val context = frag.context
-        // val permManager = PermissionManager(frag.context, frag)
+    override fun initMenuClick(frag: Fragment) {
+        menuClick = PopupMenu.OnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.contact_dial -> run {
+                    val dialIntent = Intent(Intent.ACTION_DIAL)
+                    dialIntent.data = Uri.parse("tel:$phoneNumber")
+                    frag.startActivity(dialIntent)
+                    return@OnMenuItemClickListener true
+                }
+                R.id.contact_msg -> run {
+                    val msgIntent = Intent(Intent.ACTION_VIEW)
+                    msgIntent.data = Uri.parse("sms:$phoneNumber")
+                    frag.startActivity(msgIntent)
+                    return@OnMenuItemClickListener true
+                }
+                R.id.contact_info -> run {
 
-       // if (!permManager.hasCallPermission())
-       //     permManager.requestCallPermission()
-
-        val prefContext = frag.activity.applicationContext
-        val settings = prefContext.getSharedPreferences(PermissionManager.PERM_FILE, Context.MODE_PRIVATE)
-        canCall = settings.getBoolean(PermissionManager.CALL_PERM.toString(), false)
-
-
-        layoutView?.setOnLongClickListener {
-            _ -> run {
-            // Create Dialog
-
-            val dialogBuilder = AlertDialog.Builder(context)
-            val view = frag.layoutInflater.inflate(R.layout.dialog_searchable_contact, null)
-
-            // Create onClick of dialog Item
-            val dialogClickListener = DialogClickListener(context)
-            view.findViewById<TextView>(R.id.contact_dial).setOnClickListener(dialogClickListener)
-            view.findViewById<TextView>(R.id.contact_msg).setOnClickListener(dialogClickListener)
-            view.findViewById<TextView>(R.id.contact_info).setOnClickListener(dialogClickListener)
-
-            view.findViewById<TextView>(R.id.contact_title).text = displayName
-
-            dialogBuilder.setView(view)
-            dialogBuilder.setCancelable(true)
-            dialog = dialogBuilder.create()
-            dialog.show()
-            return@setOnLongClickListener true
-        }}
+                    return@OnMenuItemClickListener true
+                }
+                else -> return@OnMenuItemClickListener false
+            }
+        }
+        isMenuClickDefaultBehavior = false
     }
 }

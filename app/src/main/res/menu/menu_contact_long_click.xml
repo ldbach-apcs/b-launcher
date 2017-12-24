@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/contact_dial"
+        android:title="@string/contact_dial"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/contact_msg"
+        android:title="@string/contact_msg"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/contact_info"
+        android:title="@string/contact_info"
+        app:showAsAction="ifRoom"/>
+</menu>

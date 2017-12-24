@@ -1,11 +1,10 @@
 package vn.ldbach.blauncher.SearchableView
 
-import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.provider.Settings
 import android.support.v4.app.Fragment
 import android.support.v7.widget.PopupMenu
 import android.view.View
@@ -39,41 +38,31 @@ data class AppDetails(
     }
 
     override fun setOnLongClick(frag: Fragment) {
-        layoutView?.setOnLongClickListener({
-            it -> run {
-            /*
-            val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-            intent.data = Uri.parse("package:$name" )
-            context.startActivity(intent)
-            */
+        super.setOnLongClick(frag, R.menu.menu_app_long_click)
+    }
 
-            val popup = PopupMenu(context, it)
-            frag.activity.menuInflater.inflate(R.menu.menu_app_long_click, popup.menu)
-
-            popup.setOnMenuItemClickListener {
-                item  -> when(item.itemId) {
-                    R.id.app_info -> run {
-                        val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                        intent.data = Uri.parse("package:$name" )
-                        context.startActivity(intent)
-                        return@setOnMenuItemClickListener  true
-                    }
-                    R.id.app_delete -> run {
-                        // Show confirm dialog
-                        val uri = Uri.parse("package:$name")
-                        val uninstall = Intent(Intent.ACTION_UNINSTALL_PACKAGE, uri)
-                        context.startActivity(uninstall)
-                        // dialog.dismiss()
-
-                        //val dialog = dialogBuilder.create().show()
-                        return@setOnMenuItemClickListener  true
-                    }
-                    else -> return@setOnMenuItemClickListener false
-            }}
-
-            popup.show()
-            return@setOnLongClickListener true
-        }})
-
+    override fun initMenuClick(frag: Fragment) {
+        menuClick = PopupMenu.OnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.app_info -> run {
+                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                    intent.data = Uri.parse("package:$name")
+                    context.startActivity(intent)
+                    return@OnMenuItemClickListener true
+                }
+                R.id.app_delete -> run {
+                    // Show confirm dialog
+                    val uri = Uri.parse("package:$name")
+                    val uninstall = Intent(Intent.ACTION_UNINSTALL_PACKAGE, uri)
+                    context.startActivity(uninstall)
+                    // dialog.dismiss()
+                    (frag as SearchableFragment).reload()
+                    //val dialog = dialogBuilder.create().show()
+                    return@OnMenuItemClickListener true
+                }
+                else -> return@OnMenuItemClickListener false
+            }
+        }
+        isMenuClickDefaultBehavior = false
     }
 }

@@ -171,10 +171,7 @@ class SearchableFragment : ViewFragment() {
 
     override fun onResume() {
         super.onResume()
-        resetListPosition()
-        searchQuery.requestFocus()
-        searchQuery.text.clear()
-        initData()
+        reload()
     }
 
     override fun onStart() {
@@ -185,5 +182,12 @@ class SearchableFragment : ViewFragment() {
     override fun onStop() {
         dataManager.unregisterReceiver()
         super.onStop()
+    }
+
+    fun reload() {
+        resetListPosition()
+        searchQuery.requestFocus()
+        searchQuery.text.clear()
+        initData()
     }
 }

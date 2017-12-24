@@ -1,12 +1,8 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <!--<item name="android:windowActionBar">false</item> -->
-
-        <!-- Ripple effect can be made in this background file-->
-        <item name="android:itemBackground">@color/colorBackgroundDialog</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowShowWallpaper">true</item>
         <item name="android:colorBackground">@android:color/transparent</item>
@@ -14,6 +10,13 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="PopupTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:colorBackground">@color/colorBackgroundDialog</item>
+
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
 
     <style name="dialog_item_style">
         <!--<item name="android:textAlignment">center</item>-->

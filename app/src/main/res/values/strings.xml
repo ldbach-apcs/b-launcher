@@ -1,10 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">BLauncher</string>
     <string name="text_search_query" tools:ignore="TypographyEllipsis">Search apps, contacts ...</string>
-    <string name="dialog_dial">Dial</string>
-    <string name="dialog_message">Message</string>
-    <string name="dialog_info">Information</string>
 
     <string name="app_info">App info</string>
     <string name="app_delete">Uninstall</string>
+
+    <string name="contact_dial">Dial</string>
+    <string name="contact_msg">Send SMS</string>
+    <string name="contact_info">Contact details</string>
 </resources>

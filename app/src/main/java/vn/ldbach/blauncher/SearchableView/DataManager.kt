@@ -116,6 +116,8 @@ class DataManager(private val context: Context) {
                     ContactsContract.Contacts.DISPLAY_NAME + " ASC")
 
             while (phones.moveToNext()) {
+                val id = phones.getLong(phones.getColumnIndex(ContactsContract.CommonDataKinds
+                        .Phone.CONTACT_ID))
                 val name = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
                 val phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
 
@@ -136,7 +138,7 @@ class DataManager(private val context: Context) {
                     contactDrawable = context.getDrawable(R.drawable.ic_contact_default)
                 }
 
-                contactList.add(ContactDetails(name, phoneNumber, contactDrawable))
+                contactList.add(ContactDetails(id, name, phoneNumber, contactDrawable))
             }
             phones.close()
         }
