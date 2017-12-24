@@ -118,6 +118,8 @@ class DataManager(private val context: Context) {
             while (phones.moveToNext()) {
                 val id = phones.getLong(phones.getColumnIndex(ContactsContract.CommonDataKinds
                         .Phone.CONTACT_ID))
+                val lookupKey = phones.getString(phones.getColumnIndex(ContactsContract
+                        .CommonDataKinds.Phone.LOOKUP_KEY))
                 val name = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
                 val phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
 
@@ -138,7 +140,7 @@ class DataManager(private val context: Context) {
                     contactDrawable = context.getDrawable(R.drawable.ic_contact_default)
                 }
 
-                contactList.add(ContactDetails(id, name, phoneNumber, contactDrawable))
+                contactList.add(ContactDetails(id, name, phoneNumber, lookupKey, contactDrawable))
             }
             phones.close()
         }

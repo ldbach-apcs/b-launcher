@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.provider.ContactsContract
 import android.provider.Settings
 import android.support.v4.app.Fragment
 import android.support.v7.widget.PopupMenu
@@ -22,9 +23,11 @@ import vn.ldbach.blauncher.t9Contains
  * This class is for helping to maintain Contact Detail
  */
 class ContactDetails(
-        private val id: Long, private val displayName: String, private val phoneNumber: String,
-        thumbnail:
-Drawable) :
+        private val id: Long,
+        private val displayName: String,
+        private val phoneNumber: String,
+        private val lookupKey: String,
+        thumbnail: Drawable) :
         Searchable(displayName, thumbnail) {
 
     companion object {
@@ -85,7 +88,11 @@ Drawable) :
                     return@OnMenuItemClickListener true
                 }
                 R.id.contact_info -> run {
-
+                    val selectedContact =
+                            ContactsContract.Contacts.getLookupUri(id, lookupKey)
+                    val infoIntent = Intent(Intent.ACTION_VIEW)
+                    infoIntent.setDataAndType(selectedContact, ContactsContract.Contacts.CONTENT_ITEM_TYPE)
+                    frag.startActivity(infoIntent)
                     return@OnMenuItemClickListener true
                 }
                 else -> return@OnMenuItemClickListener false
