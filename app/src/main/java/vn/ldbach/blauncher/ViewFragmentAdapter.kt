@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import vn.ldbach.blauncher.Fragments.*
+import vn.ldbach.blauncher.NoteView.NoteFragment
 import vn.ldbach.blauncher.SearchableView.SearchableFragment
 
 /**
@@ -15,7 +16,7 @@ class ViewFragmentAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
     private val fragments = ArrayList<ViewFragment>()
 
     init {
-        fragments.add(PedoFragment())
+        fragments.add(NoteFragment())
         fragments.add(SearchableFragment())
         fragments.add(PhotoFragment())
     }
