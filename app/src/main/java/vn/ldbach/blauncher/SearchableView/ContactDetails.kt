@@ -1,14 +1,10 @@
 package vn.ldbach.blauncher.SearchableView
 
-import android.annotation.SuppressLint
-import android.app.AlertDialog
-import android.content.Context
+
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.provider.ContactsContract
-import android.provider.Settings
 import android.support.v4.app.Fragment
 import android.support.v7.widget.PopupMenu
 import android.view.View
@@ -16,7 +12,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import vn.ldbach.blauncher.R
-import vn.ldbach.blauncher.Utils.PermissionManager
 import vn.ldbach.blauncher.t9Contains
 
 /**

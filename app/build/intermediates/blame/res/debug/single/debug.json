@@ -144,6 +144,10 @@
         "source": "/home/ldbach/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/fa103c72eeccc8e4a1b2aa0fe023ecde/res/drawable-mdpi-v4/abc_scrubber_primary_mtrl_alpha.9.png"
     },
     {
+        "merged": "/home/ldbach/AndroidStudioProjects/BLauncher/app/build/intermediates/res/merged/debug/layout_viewfragment_note.xml.flat",
+        "source": "/home/ldbach/AndroidStudioProjects/BLauncher/app/src/main/res/layout/viewfragment_note.xml"
+    },
+    {
         "merged": "/home/ldbach/AndroidStudioProjects/BLauncher/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "/home/ldbach/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/fa103c72eeccc8e4a1b2aa0fe023ecde/res/drawable-xxhdpi-v4/abc_ic_menu_copy_mtrl_am_alpha.png"
     },
@@ -1638,6 +1642,10 @@
     {
         "merged": "/home/ldbach/AndroidStudioProjects/BLauncher/app/build/intermediates/res/merged/debug/layout_abc_list_menu_item_layout.xml.flat",
         "source": "/home/ldbach/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/fa103c72eeccc8e4a1b2aa0fe023ecde/res/layout/abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "/home/ldbach/AndroidStudioProjects/BLauncher/app/build/intermediates/res/merged/debug/layout_list_note.xml.flat",
+        "source": "/home/ldbach/AndroidStudioProjects/BLauncher/app/src/main/res/layout/list_note.xml"
     },
     {
         "merged": "/home/ldbach/AndroidStudioProjects/BLauncher/app/build/intermediates/res/merged/debug/color-v23_abc_color_highlight_material.xml.flat",

@@ -9,4 +9,8 @@ abstract class ViewFragment : Fragment() {
     open fun performFabAction() {
 
     }
+
+    open fun onBackPressed() {
+
+    }
 }

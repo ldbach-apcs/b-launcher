@@ -12,13 +12,14 @@ import vn.ldbach.blauncher.SearchableView.SearchableFragment
  */
 class ViewFragmentAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
 
-    private val numPage = 3
+    private var numPage = 3
     private val fragments = ArrayList<ViewFragment>()
 
     init {
         fragments.add(NoteFragment())
         fragments.add(SearchableFragment())
         fragments.add(PhotoFragment())
+        numPage = fragments.size
     }
 
     override fun getItem(position: Int): Fragment = when (position) {

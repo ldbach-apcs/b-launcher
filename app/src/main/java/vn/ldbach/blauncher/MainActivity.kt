@@ -44,7 +44,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        // Wont do anything on back button clicked
+        // Bring user to main screen
+        pager.currentItem = 1
     }
 
     private fun initPager() {

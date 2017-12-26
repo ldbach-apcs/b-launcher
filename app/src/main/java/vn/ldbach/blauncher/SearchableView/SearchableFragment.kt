@@ -62,9 +62,7 @@ class SearchableFragment : ViewFragment() {
         listView.setOnScrollListener(object : AbsListView.OnScrollListener{
             override fun onScrollStateChanged(view: AbsListView?, scrollState: Int) {
                 if (scrollState == SCROLL_STATE_IDLE) return
-                val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as
-                        InputMethodManager
-                imm.hideSoftInputFromWindow(searchQuery.windowToken, 0)
+                hideKeyboard()
             }
 
             override fun onScroll(view: AbsListView?, firstVisibleItem: Int, visibleItemCount: Int, totalItemCount: Int) {
@@ -101,6 +99,12 @@ class SearchableFragment : ViewFragment() {
 
         clearText.setOnClickListener { _-> searchQuery.text.clear() }
         // focusKeyboard.setOnClickListener({_ -> performFabAction()})
+    }
+
+    fun hideKeyboard() {
+        val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as
+                InputMethodManager
+        imm.hideSoftInputFromWindow(searchQuery.windowToken, 0)
     }
 
     private fun resetListPosition() {
@@ -168,6 +172,16 @@ class SearchableFragment : ViewFragment() {
         imm.showSoftInput(searchQuery, InputMethodManager.SHOW_IMPLICIT)
         resetListPosition()
     }
+
+    override fun onBackPressed() {
+        hideKeyboard()
+    }
+
+    override fun onPause() {
+        hideKeyboard()
+        super.onPause()
+    }
+
 
     override fun onResume() {
         super.onResume()
