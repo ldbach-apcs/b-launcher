@@ -6,6 +6,7 @@
     <color name="colorBackground">#8F101010</color>
     <color name="colorSearchQuery">#707070</color>
 
+    <color name="colorNoteDivider">#90202020</color>
     <color name="colorTextSearchPrimary">#FBFBFB</color>
     <color name="colorTextSearchSecondary">#FAF5F5F5</color>
     <color name="colorBackgroundDialog">#F5F5F5</color>

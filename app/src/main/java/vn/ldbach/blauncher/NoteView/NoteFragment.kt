@@ -37,7 +37,7 @@ class NoteFragment : ViewFragment() {
             }
             else -> {
                 adapter!!.replaceList(notes)
-                adapter!!.notifyDataSetChanged()}
+            }
         }
     }
 
@@ -58,7 +58,12 @@ class NoteFragment : ViewFragment() {
         recyclerView = view?.findViewById(R.id.list_note)!!
         fab = view.findViewById(R.id.fab_add_note)
 
-        recyclerView.layoutManager = LinearLayoutManager(this.context)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+
+        val divider = context.getDrawable(R.drawable.note_divider)
+        val noteDivider = NoteDivider(divider)
+
+        recyclerView.addItemDecoration(noteDivider)
 
         noteLoader = NoteLoader(this.context)
 
@@ -66,5 +71,17 @@ class NoteFragment : ViewFragment() {
             _ -> run {
             // Start take note intent then save it
         }}
+    }
+
+    fun showFab() = fab.show()
+
+    fun hideFab() = fab.hide()
+
+    override fun onSelected() {
+        showFab()
+    }
+
+    override fun onDeselected() {
+        hideFab()
     }
 }

@@ -13,4 +13,12 @@ abstract class ViewFragment : Fragment() {
     open fun onBackPressed() {
 
     }
+
+    open fun onSelected() {
+
+    }
+
+    open fun onDeselected() {
+
+    }
 }

@@ -110,7 +110,7 @@ class SearchableArrayAdapter (
 
     fun replaceList(searchableLists: ArrayList<List<Searchable>>) {
         this.searchableLists = searchableLists
-        this.filteredAppList = searchableLists[0]
-        this.notifyDataSetChanged()
+        filteredAppList = searchableLists[0]
+        notifyDataSetChanged()
     }
 }

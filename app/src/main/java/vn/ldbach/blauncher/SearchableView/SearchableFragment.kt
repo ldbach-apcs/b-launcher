@@ -136,7 +136,7 @@ class SearchableFragment : ViewFragment() {
             }
             else -> {
                 adapter!!.replaceList(searchableLists)
-                adapter!!.notifyDataSetChanged()}
+            }
         }
     }
 
@@ -166,7 +166,7 @@ class SearchableFragment : ViewFragment() {
         }
     }
 
-    override fun performFabAction() {
+    private fun showKeyboard() {
         val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as
                 InputMethodManager
         imm.showSoftInput(searchQuery, InputMethodManager.SHOW_IMPLICIT)
@@ -203,5 +203,13 @@ class SearchableFragment : ViewFragment() {
         searchQuery.requestFocus()
         searchQuery.text.clear()
         initData()
+    }
+
+    override fun onSelected() {
+        showKeyboard()
+    }
+
+    override fun onDeselected() {
+        hideKeyboard()
     }
 }

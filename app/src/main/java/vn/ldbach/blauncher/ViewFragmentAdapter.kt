@@ -30,4 +30,11 @@ class ViewFragmentAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
         return numPage
     }
+
+    fun selectPageAtPosition(position: Int) {
+        for (i in 0 until numPage) {
+            if (i == position) fragments[i].onSelected()
+            else fragments[i].onDeselected()
+        }
+    }
 }

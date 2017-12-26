@@ -7,6 +7,7 @@ import android.support.annotation.IdRes
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.view.ViewPager
 import android.view.View
+import vn.ldbach.blauncher.NoteView.NoteFragment
 import vn.ldbach.blauncher.SearchableView.SearchableFragment
 
 fun CharSequence.t9Contains(filterString: String): Boolean {
@@ -62,14 +63,10 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            override fun onPageSelected(position: Int) = when (pagerAdapter.getItem(position)) {
-                is SearchableFragment -> run {
-                    //fab.setImageDrawable(getDrawable(R.drawable.ic_keyboard))
-                    //fab.show()
-                }
-                    else -> fab.hide()
-                }
-            })
+            override fun onPageSelected(position: Int) {
+                pagerAdapter.selectPageAtPosition(position)
+            }
+        })
     }
 
 
